@@ -1,5 +1,11 @@
 package server;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class Server {
 	private final int PUERTO = 5000;
     public void iniciar() {
@@ -44,7 +50,7 @@ public class Server {
 
     }
     public static void main(String[] args) {
-        Servidor s = new Servidor();
+        Server s = new Server();
         s.iniciar();
     }
 }
