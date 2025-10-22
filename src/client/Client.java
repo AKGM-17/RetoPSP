@@ -2,7 +2,7 @@ package client;
 
 import java.awt.EventQueue;
 
-import view.LogInView;
+import view.ChatView;
 
 public class Client {
 
@@ -10,7 +10,7 @@ public class Client {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LogInView frame = new LogInView();
+					ChatView frame = new ChatView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

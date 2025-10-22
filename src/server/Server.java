@@ -10,19 +10,18 @@ public class Server {
 		Socket cliente = null;
 		ObjectInputStream entrada = null;
 		ObjectOutputStream salida = null;
+		boolean active = true;
 		try (ServerSocket servidor = new ServerSocket(PUERTO)) {
-			while (true) {
+			while (active) {
 				System.out.println("Esperando conexiones del cliente...");
-
 				try {
 					cliente = servidor.accept();
 					System.out.println("Cliente conectado.");
 					salida = new ObjectOutputStream(cliente.getOutputStream());
 					entrada = new ObjectInputStream(cliente.getInputStream());
-
-					salida.writeObject("Hola ¡Cliente!");
+					salida.writeObject("Hola! Introduzca tu nombre de usuario para acceder al chat.");
 				} catch (Exception e) {
-					System.out.println("Error: " + e.getMessage());
+					e.printStackTrace();
 				} finally {
 					try {
 						if (entrada != null)
