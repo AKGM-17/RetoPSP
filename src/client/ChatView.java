@@ -1,15 +1,13 @@
 package client;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 import javax.swing.*;
 import javax.swing.border.*;
 
-import threads.Usuario;
+import model.Usuario;
 
 
 public class ChatView extends JFrame {
@@ -17,7 +15,6 @@ public class ChatView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	
 	private Usuario user;
 
 	private final int PORT = 5000;
@@ -27,7 +24,6 @@ public class ChatView extends JFrame {
 		Socket cli = null;
 		ObjectInputStream entrada = null;
 		ObjectOutputStream salida = null;
-		int a, b;
 
 		try {
 			// Connect to server
@@ -39,7 +35,6 @@ public class ChatView extends JFrame {
 			System.out.println(mensaje);
 
 			// Login
-			salida.writeObject(password);
 
 			// Is the login valid?
 			mensaje = (String) entrada.readObject();
@@ -96,6 +91,18 @@ public class ChatView extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(29, 87, 479, 197);
 		contentPane.add(scrollPane);
-
+	}
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ChatView frame = new ChatView();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

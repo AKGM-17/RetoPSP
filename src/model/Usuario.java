@@ -1,4 +1,4 @@
-package threads;
+package model;
 
 public class Usuario {
 	private String username;
